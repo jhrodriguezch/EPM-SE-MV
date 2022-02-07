@@ -6,8 +6,6 @@ link Binder código:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jhrodriguezch/EPM-SE-MV/main?labpath=GUI.ipynb)
 
-.. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/jhrodriguezch/EPM-SE-MV/main?labpath=GUI.ipynb
-
 link Binder voila:
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jhrodriguezch/EPM-SE-MV/HEAD?urlpath=%2Fvoila%2Frender%2FGUI.ipynb)
