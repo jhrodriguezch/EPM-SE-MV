@@ -8,4 +8,5 @@ link Binder código:
 
 link Binder voila:
 
+https://mybinder.org/v2/gh/jhrodriguezch/EPM-SE-MV/main?urlpath=%2Fvoila%2Frender%2FGUI.ipynb
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jhrodriguezch/EPM-SE-MV/main?urlpath=%2Fvoila%2Frender%2FGUI.ipynb)
