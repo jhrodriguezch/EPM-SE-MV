@@ -70,7 +70,7 @@ def main(init_val, para, list_date, clim_type):
     mig_total = list(np.array(mig_inund) + np.array(mig_sequia))
     
     # Rango de edades
-    rang_edades = "Entre 19 y 60 años"
+    rang_edades = para['Rango de edades']# "Entre 19 y 60 años"
     
     # Edad promedio
     if rang_edades == "Menores de 6 años":
@@ -109,9 +109,9 @@ def main(init_val, para, list_date, clim_type):
         np.array([mig_inund[0] if ii == 2 else 0 for ii in Ev_ex])
     
     # Habilidad manejo de inundacion
-    # !!! TODO añadir rango
-    hmi = [(0.1) + (0.5) + (1)] * n_pasos
-    # !!! end TODO añadir rango
+    hmi = [(0.1) * para['Exp. en inundaciones (%): Nada - 3    '] +\
+    (0.5) * para['Exp. en inundaciones (%): 4    - 8    '] + (1) *\
+    para['Exp. en inundaciones (%): 8    - Mucho']] * n_pasos
     
     # Mano de obra disponible familiar
     modf = [100 - (t_salud * edad_prom)] * n_pasos
@@ -174,7 +174,10 @@ if __name__ == '__main__':
             'Actividad desarrollada - actividad de campo': 3,
             'Actividad desarrollada - actividad no agropecuaria': 7,
             'Actividad desarrollada - Combinación': 5,
-            'Nivel de educación': 'Básica Primaria'}
+            'Nivel de educación': 'Básica Primaria',
+            'Exp. en inundaciones (%): Nada - 3    ' : 14.04,
+            'Exp. en inundaciones (%): 4    - 8    ' : 47.85,
+            'Exp. en inundaciones (%): 8    - Mucho' : 38.1}
     
     # neutro: 0, seco: 1, humedo: 2
     clim_type = [0, 1, 2]

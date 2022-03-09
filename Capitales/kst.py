@@ -64,7 +64,7 @@ def main(init_val, para, list_date, clim_type):
     tg_aae = para['Tasa de grupo de apoyo ante eventos']
     tp_p_ag = para['Tasa de percepción positiva de ayudas del gobierno']
     tv_prod = para['Tasa de vinculación productiva']
-    tp_fun = para['Tasa de percepción de funcionalidad']
+    # tp_fun = para['Tasa de percepción de funcionalidad']
     tnv_oree = para['Tasa de no vinculación con organizaciones relacionadas a eventos externos']
     tv_fam = para['Tasa de vinculación familiar']
     uc_ae = para['Union de la comunidad ante eventos']
@@ -74,6 +74,11 @@ def main(init_val, para, list_date, clim_type):
     num_pass = len(list_date)
     
     # FLOWS - CONSTANTS
+    
+    # Tasa de percepción de la funcionalidad
+    tp_fun = 0.1 * para['Percepción de funcionalidad : Nada -     3'] +\
+    0.5 * para['Percepción de funcionalidad :    4 -     7'] + 1 *\
+    para['Percepción de funcionalidad :    8 - Mucho']
     
     # Beneficios pertenencia organización comunitaria
     bp_oc = [np.mean([tv_com, uc_ae, tg_aae])] * num_pass
@@ -135,10 +140,14 @@ if __name__ == '__main__':
             'Tasa de grupo de apoyo ante eventos':0.4,
             'Tasa de percepción positiva de ayudas del gobierno':0.4,
             'Tasa de vinculación productiva':0.4,
-            'Tasa de percepción de funcionalidad':0.4,
+            # 'Tasa de percepción de funcionalidad':0.4,
             'Tasa de no vinculación con organizaciones relacionadas a eventos externos':0.4,
             'Tasa de vinculación familiar':0.4,
-            'Union de la comunidad ante eventos':0.4}
+            'Union de la comunidad ante eventos':0.4,
+            'Percepción de funcionalidad : Nada -     3': 0.4,
+            'Percepción de funcionalidad :    4 -     7': 0.4,
+            'Percepción de funcionalidad :    8 - Mucho': 0.4}
+            
     list_date = ['2022-01-01', '2022-02-01', '2022-03-01']
     
     clim_type = [0, 1, 2]

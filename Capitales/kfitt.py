@@ -67,7 +67,7 @@ def main(init_val, para,
     pno_herr = para['Porcentaje de no obtención - Herr. agrícolas']
     inf_or_man_eve = para['Porcentaje de SI actuación miembros del hogar']
     inf_agr_pec = para['Promedio de rangos de uso de la tierra']
-    rang_kfitt = para['rango']
+    rang_kfitt = para['Rango capital físico : Infraestructura disponible']
     
     # MAIN
     df_result = pd.DataFrame(data={'Fecha' : list(kst_df['Fecha'])})
@@ -104,7 +104,7 @@ def main(init_val, para,
                       axis=0)
     
     # Infraestructura manejo de eventos - list
-    inf_man_eve = list(inf_or_man_eve * kht_df['Experiencia manejo de eventos'] * num_pass)
+    inf_man_eve = list(inf_or_man_eve * kht_df['Experiencia manejo de eventos'])
     
     # Add flows to res
     df_result['Tipificación de vivienda'] = tip_viv
@@ -158,7 +158,7 @@ if __name__ == '__main__':
             'Porcentaje de no obtención - Herr. agrícolas' : 0.4,
             'Porcentaje de SI actuación miembros del hogar' : 0.4,
             'Promedio de rangos de uso de la tierra' : 0.4,
-            'rango' : 0.2}
+            'Rango capital físico : Infraestructura disponible' : 0.2}
     
     kst_df = pd.DataFrame(data={'Fecha': ['2022-01-01', '2022-02-01', '2022-03-01'],
                                 'Beneficios pertenencia organización comunitaria': [0.4, 0.4, 0.4],
