@@ -52,22 +52,22 @@ def main(init_val, para,
         Resultados.
     """
     # CONSTANTES
-    v_pro = para['Vivienda - Propia']
-    v_arr = para['Vivienda - Arriendo']
-    v_apa = para['Vivienda - Aparceria']
-    v_usu = para['Vivienda - Usufructo']
-    v_com = para['Vivienda - Comodato']
-    v_ocuhec = para['Vivienda - Ocupación de hecho']
+    v_pro     = para['Vivienda - Propia']
+    v_arr     = para['Vivienda - Arriendo']
+    v_apa     = para['Vivienda - Aparceria']
+    v_usu     = para['Vivienda - Usufructo']
+    v_com     = para['Vivienda - Comodato']
+    v_ocuhec  = para['Vivienda - Ocupación de hecho']
     v_pro_col = para['Vivienda - Propiedad colectiva']
-    v_adj = para['Vivienda - Adjudicatario']
+    v_adj     = para['Vivienda - Adjudicatario']
     
-    pno_auto = para['Porcentaje de no obtención - Automovil o moto']
-    pno_trac = para['Porcentaje de no obtención - Tractor']
-    pno_iesp = para['Porcentaje de no obtención - Inta. especiales']
-    pno_herr = para['Porcentaje de no obtención - Herr. agrícolas']
+    pno_auto       = para['Porcentaje de no obtención - Automovil o moto']
+    pno_trac       = para['Porcentaje de no obtención - Tractor']
+    pno_iesp       = para['Porcentaje de no obtención - Inta. especiales']
+    pno_herr       = para['Porcentaje de no obtención - Herr. agrícolas']
     inf_or_man_eve = para['Porcentaje de SI actuación miembros del hogar']
-    inf_agr_pec = para['Promedio de rangos de uso de la tierra']
-    rang_kfitt = para['Rango capital físico : Infraestructura disponible']
+    inf_agr_pec    = para['Promedio de rangos de uso de la tierra']
+    rang_kfitt     = para['Rango capital físico : Infraestructura disponible']
     
     # MAIN
     df_result = pd.DataFrame(data={'Fecha' : list(kst_df['Fecha'])})
@@ -76,7 +76,7 @@ def main(init_val, para,
     # FLOWS - CONSTANTS
     # Tipoficación de vivienda - list
     tip_viv = [1 * v_pro + 0.8 * v_arr + 0.2 * v_apa + 0.2 * v_ocuhec + 0.5 *\
-        v_usu + 0.1 * v_com + 0.1 * v_pro_col + 0 * v_adj] * num_pass
+               v_usu + 0.1 * v_com + 0.1 * v_pro_col + 0 * v_adj] * num_pass
         
     # Infraestructura disponible - list
     if rang_kfitt > 0 and rang_kfitt <= 0.25:
@@ -86,9 +86,9 @@ def main(init_val, para,
     elif rang_kfitt > 0.5 and rang_kfitt <= 0.99:
         rang_kfitt_fix = 75
     elif rang_kfitt > 0.99:
-        rang_kfitt_fix = 1
+        rang_kfitt_fix = 100
     else:
-        sys.error('rango valor incorrecto. Debe ser mayor a 0')
+        sys.error('Rango valor incorrecto. Debe ser mayor a 0')
     
     inf_dis = [inf_agr_pec * rang_kfitt_fix] * num_pass
     
@@ -104,7 +104,8 @@ def main(init_val, para,
                       axis=0)
     
     # Infraestructura manejo de eventos - list
-    inf_man_eve = list(inf_or_man_eve * kht_df['Experiencia manejo de eventos'])
+    # inf_man_eve = list(inf_or_man_eve * kht_df['Experiencia manejo de eventos'])
+    inf_man_eve = inf_or_man_eve * kht_df['Experiencia manejo de eventos']
     
     # Add flows to res
     df_result['Tipificación de vivienda'] = tip_viv

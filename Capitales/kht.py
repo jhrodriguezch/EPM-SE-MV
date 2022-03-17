@@ -56,6 +56,7 @@ def main(init_val, para, list_date, clim_type):
     acCm    = para['Actividad desarrollada - actividad de campo']
     aNagr   = para['Actividad desarrollada - actividad no agropecuaria']
     comb    = para['Actividad desarrollada - Combinación']
+    min     = para['Actividad desarrollada - Mineria']
     
     df_result = pd.DataFrame(data = {'Fecha' : list_date})
     
@@ -118,7 +119,7 @@ def main(init_val, para, list_date, clim_type):
     
     # Habilidades actividades productivas
     hap = [100 * np.mean([agri, gana, pesc, fore, come, acCm,
-                         aNagr, comb]) / nh] * n_pasos
+                         aNagr, comb, min]) / nh] * n_pasos
     
     # FLOWS - VARIABLES
     

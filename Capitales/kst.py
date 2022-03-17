@@ -77,8 +77,8 @@ def main(init_val, para, list_date, clim_type):
     
     # Tasa de percepción de la funcionalidad
     tp_fun = 0.1 * para['Percepción de funcionalidad : Nada -     3'] +\
-    0.5 * para['Percepción de funcionalidad :    4 -     7'] + 1 *\
-    para['Percepción de funcionalidad :    8 - Mucho']
+             0.5 * para['Percepción de funcionalidad :    4 -     7'] +\
+               1 * para['Percepción de funcionalidad :    8 - Mucho']
     
     # Beneficios pertenencia organización comunitaria
     bp_oc = [np.mean([tv_com, uc_ae, tg_aae])] * num_pass
@@ -95,7 +95,7 @@ def main(init_val, para, list_date, clim_type):
     accs_aee = [tp_fun] * num_pass
     
     # Desvinculación con organizaciones relacionadas a los eventos extremos
-    doree = [tnv_oree * tv_fam] * num_pass
+    doree = [tnv_oree * tv_fam / 100] * num_pass
     
     # Add flows to res
     df_result['Beneficios pertenencia organización comunitaria'] = bp_oc
@@ -104,8 +104,12 @@ def main(init_val, para, list_date, clim_type):
     df_result['Aprendizaje de comportamientos comunitarios y sociales ante eventos extremos'] = accs_aee
     df_result['Desvinculación con organizaciones relacionadas a los eventos extremos'] = doree
     
-    df_result['Capital social instantaneo'] = np.mean([np.array(bp_oc), np.array(bp_ap),
-                                                      np.array(ag), np.array(accs_aee)], 
+    # df_result['Capital social instantaneo'] = np.mean([np.array(bp_oc), np.array(bp_ap),
+    #                                                   np.array(ag), np.array(accs_aee)], 
+    #                                                   axis=0) - np.array(doree)
+    
+    df_result['Capital social instantaneo'] = np.mean([np.array(bp_oc) + np.array(bp_ap) +\
+                                                      np.array(ag) + np.array(accs_aee)], 
                                                       axis=0) - np.array(doree)
     
     # STOCKS

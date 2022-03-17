@@ -148,7 +148,7 @@ def main(init_val, para,
         res_lts.append(res)
         
     # Add stokcs results
-    df_res['KHT'] = res_lts[:-1]
+    df_res['KFT'] = res_lts[:-1]
     
     return df_res
             
